@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * list_to_string - converts a list to a string
+ * list_to_strings - converts a list to a string
  * @head: pointer to the head node
  *
- * @Description: This function takes a linked list of strings and
+ * Description: This function takes a linked list of strings and
  * returns an array of strings that contains all the strings/data
  * from the linked list.
  * Return: array of strings of the list->data
@@ -53,9 +53,10 @@ ssize_t get_node_index(list_t *head, list_t *node)
 
 	while (head)
 	{
-		/* 
+		/*
 		 * pointer comparison
-		 * here it checks if head and node are pointing to the same type of data.*/
+		 * here it checks if head and node are pointing to the same type of data.
+		 */
 		if (head == node)
 			return (j);
 		head = head->next;
@@ -68,7 +69,7 @@ ssize_t get_node_index(list_t *head, list_t *node)
  * delete_nodeint - deletes node at a particular index
  * @head: ponter to start of the node
  * @indx: index to be deleted
- * Return 0 on sucess
+ * Return: 0 on sucess
  *		1 on delete
  */
 int delete_nodeint(list_t **head, unsigned int indx)
