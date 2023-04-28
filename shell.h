@@ -132,9 +132,6 @@ int _puts(char *str);
 void putstr(char *str);
 int putchr(char chr);
 
-/* environment */
-size_t print_list_data(const list_t *node);
-
 /* env.c */
 int my_unsetenv(shell_data *data);
 int my_env(shell_data *data);
