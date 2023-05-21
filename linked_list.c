@@ -156,11 +156,13 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 	 * When used to initialize a struct, it will be implicitly cast to
 	 * the appropriate type based on the field's declaration.
 	 */
-
 	_memset((void *)new, 0, sizeof(list_t));
 	new->num = num;
 	if (str)
 	{
+		/* If you do this new->data = str, new->data will point to the original str*/
+		/* strdup ensures that a new copy of the string is created in memory,*/
+		/* which can be safely manipulated without affecting the original string.*/
 		new->data = _strdup(str);
 		if (!new->data)
 		{

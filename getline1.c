@@ -13,7 +13,12 @@ ssize_t read_line(shell_data *data, char *buffer, size_t *len)
 
 	if (*len)
 		return (0);
-
+	/*Recall that readfd was initialized to 0 using the SHELL_DATA_INIT*/
+	/*macro which means stdin*/
+	/*readfd can only be changed once in the entire program, and thats only*/
+	/*when our program is passed a command line argument(file with commands)*/
+	/*then readfd will be changed to the file descriptor value of that file*/
+	/*this check is done in the main()*/
 	rd = read(data->readfd, buffer, RD_BUFFER_SIZE);
 	if (rd >= 0)
 		*len = rd;

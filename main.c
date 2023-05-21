@@ -3,7 +3,7 @@
 /**
  * main - start of a simple shell
  * @argc: argument count
- * @argv: arry of strings arguments
+ * @argv: array of string arguments
  * Return: 0 if success
  *		1 if fail
  */

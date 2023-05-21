@@ -42,10 +42,10 @@ void _memcpy(void *dest, const void *src, int n)
 }
 
 /**
- * _memset - intitiazes a buffer to a specific value
+ * _memset - initializes a buffer to a specific value
  * @ptr: pointer to the memory to fill
- * @val: ponter to fill it with
- * @n: how no. of bytes to fill
+ * @val: value to fill it with
+ * @n: no. of bytes to fill
  * Return: pointer to initialized memory
  */
 char *_memset(char *ptr, char val, unsigned int n)

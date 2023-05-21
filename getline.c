@@ -34,11 +34,11 @@ int _getline(shell_data *data, char **buffer, size_t *len)
 	if (rd == -1 || (rd == 0 && length == 0))
 		return (-1);
 	c =  _strchr(buf + i, '\n');
-	/*
-	 * If a '\0' character is found, nl is set to the position of the
-	 *  '\0' character plus one. If a newline character is not found,
-	 *  nl is set to length
-	 */
+	/* If a '\n' character is found, nl is set to the position of the*/
+	/*'\n' + one. to account for the newline character itself.*/
+	/*If a newline character is not found, nl is set to length*/
+	/*(c-buf) is casted to unsigned int because pointer diff returns*/
+	/*a special type called ptrdiff_t*/
 	nl = c ? 1 + (unsigned int)(c - buf) : length;
 
 	new_p = _realloc(ptr, buf_size, buf_size ? buf_size + nl : nl + 1);
@@ -77,7 +77,9 @@ void check_comments(char *buffer)
 	/*while (buffer[j])*/
 	for (j = 0; buffer[j] != '\0'; j++)
 	{
-		/* !j makes sure the loop breaks is '#' was found at beginning*/
+		/*the if condition makes sure we are removing a comment and not a part of a*/
+		/*command. So the command must come after a space*/
+		/*!j makes sure the loop breaks if '#' was found at the beginning*/
 		if (buffer[j] == '#' && (!j || buffer[j - 1] == ' '))
 		{
 			buffer[j] = '\0';
@@ -122,6 +124,8 @@ ssize_t input_buf(shell_data *data, char **buffer, size_t *len)
 		 */
 		free(*buffer);
 		*buffer = NULL;
+		/*SIGINT will forcefully terminate our program, leaving behind*/
+		/*unfinished work or corrupting data. we dont want that*/
 		signal(SIGINT, sigint_handler);
 
 		rd = _getline(data, buffer, &length);
